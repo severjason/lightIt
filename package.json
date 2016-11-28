@@ -1,10 +1,10 @@
 {
-  "name": "workflow",
+  "name": "light it test",
   "version": "1.0.0",
-  "description": "Default workflow for app",
+  "description": "Light it test work",
   "repository": {
     "type": "git",
-    "url": "https://github.com/severjason/workflow.git"
+    "url": "https://github.com/severjason/lightit.git"
   },
   "author": "severjason",
   "license": "ISC",

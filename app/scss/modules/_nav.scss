@@ -1,0 +1,20 @@
+nav#navigation {
+  min-height: $nav_height;
+  margin: 0 auto 20px;
+  //border: $test_border;
+  border-radius: 1px;
+
+  button, a {
+    min-width: $nav_buttons_width;
+    margin-top: $nav_padding;
+    height: $nav_height - 2 * $nav_padding;
+    border-radius: 1px;
+
+  }
+  .nav_buttons {
+    float: left;
+  }
+  .auth_buttons {
+    float: right;
+  }
+}
