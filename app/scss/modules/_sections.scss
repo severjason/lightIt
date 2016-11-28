@@ -54,15 +54,104 @@ section#content {
 
     .description {
       width: 50%;
-      padding: 5px;
+      padding: $product_description_padding;
     } //.desription
 
     #comments {
       width: 100%;
+      //border-top: $test_border;
+      //margin-top: $comment_margin;
+
+      .list-group-item {
+        max-width: $max_comments_width;
+        margin: $comment_margin auto;
+        border-radius: $border_radius;
+      }
+
+      .comments_header{
+
+        padding: $comment_margin / 2;
+        border-bottom: $test_border;
+
+        div {
+          height: $comment_height;
+          line-height: $comment_height;
+
+          &.left {
+            float: left;
+          }
+          &.right {
+            float: right;
+          }
+        }
+
+
+        &:after {
+          content: "";
+          display: block;
+          clear: both;
+          visibility: hidden;
+        }
+
+      } //.comments_header
+      .comment {
+        word-wrap: break-word;
+
+        p {
+          margin: 0;
+          padding-top: $comment_padding_top;
+        }
+      }
+    }//#comments
+
+    #post_review_container {
+      width: 100%;
+      max-width: $max_comments_width;
+      padding: 2 * $comment_padding_top;
+      margin: $comment_margin auto;
       border-top: $test_border;
-      margin-top: 10px;
+      border-bottom: $test_border;
+
+      label {
+        height: $rate_height;
+        line-height: $rate_height;
+        display: block;
+        float: left;
+        margin: 0;
+      }
+
+      #post_review_warning {
+        height: $rate_height;
+        line-height: $rate_height;
+        display: none;
+        float: left;
+        margin-left: $comment_margin;
+        color: $alert;
+      }
+
+      #post_review_rate {
+        width: 100px;
+        height: $rate_height;
+        display: block;
+        float: left;
+        border-radius: $border_radius;
+      }
+
+      textarea {
+        width: 100%;
+        resize: vertical;
+        margin-top: $comment_margin;
+        border-radius:  $border_radius;
+      }
     }
-  }
+
+    .comments_text {
+      width: 100%;
+      font-weight: bold;
+      text-align: center;
+    }
+
+  }//#product_details
 }// section#content
 
 #sign_up_form {
@@ -72,7 +161,7 @@ section#content {
 } //#sign_up_form
 
 
-#loader {
+.loader {
   display: none;
   position: absolute;
   left: 50%;

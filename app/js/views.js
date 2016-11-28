@@ -3,33 +3,70 @@
 (function ($) {
     App.views.Product = Backbone.View.extend({
         tagName: "div",
-        content:"#content",
+        content: "#content",
+        comments: "#comments",
+        loader: ".loader",
+        postReviewContainer:"#post_review_container",
         id: "product_details",
         template: '#product_template',
         initialize: function () {
             this.template = _.template($(this.template).html());
-
+            this.model.getReviews();
+            this.postReview = new App.views.PostReview({poductId:this.model.get("id")});
         },
         render: function () {
-            let that = this;
             this.$el.html(this.template(this.model.toJSON()));
-            this.model.getReviews().then(function () {
-                that.renderReviews();
-            });
+            this.model.on("reviewsReceived", this.renderReviews, this);
             return this;
         },
         renderReviews: function () {
-            console.log(this.model);
-            console.log(this.model.reviews.length);
+            this.renderPostReview();
+            $(this.comments).empty();
+            for (let i = this.model.reviews.length - 1; i >= 0; i--) {
+                var review = new App.views.Reviews({model: this.model.reviews.models[i]});
+                $(this.comments).append(review.render().el);
+            }
+        },
+        renderPostReview:function () {
+            $(this.postReviewContainer).empty().append(this.postReview.render().el)
+
+        }
+    });
+    App.views.PostReview = Backbone.View.extend({
+        rateId:"#post_review_rate",
+        textId:"#post_review_text",
+        warningId:"#post_review_warning",
+        template:"#post_review",
+        initialize: function () {
+            this.template = _.template($(this.template).html());
+        },
+        render: function () {
+            this.$el.html(this.template({}));
+            return this;
+        },
+        events: {
+            "click #post_review_button" : "submit"
+        },
+        submit:function () {
+            console.log($(this.textId).val());
         }
     });
 
     App.views.Reviews = Backbone.View.extend({
-        
+        tagName: "div",
+        className: "list-group-item",
+        template: '#review',
+        initialize: function () {
+            this.template = _.template($(this.template).html());
+        },
+        render: function () {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
     });
     App.views.Products = Backbone.View.extend({
         tagName: "div",
-        content:"#content",
+        content: "#content",
         className: "product",
         template: '#products_template',
         initialize: function () {
@@ -43,19 +80,18 @@
             "click": "renderProduct"
         },
         renderProduct: function () {
-            let productView = new App.views.Product({model:this.model});
+            let productView = new App.views.Product({model: this.model});
             $(this.content).empty();
             $(this.content).append(productView.render().el);
         }
     });
 
 
-
     App.views.SignUp = Backbone.View.extend({
-        el:"#sign_up_button",
-        content:"#content",
-        tagName:"div",
-        template:"#sign_up_template",
+        el: "#sign_up_button",
+        content: "#content",
+        tagName: "div",
+        template: "#sign_up_template",
         initialize: function () {
             this.template = _.template($(this.template).html());
         },
@@ -64,22 +100,41 @@
             return this;
         },
         events: {
-            "click" : "render"
+            "click": "render"
+        }
+    });
+
+    App.views.Login = Backbone.View.extend({
+        el: "#login_button",
+        content: "#content",
+        tagName: "div",
+        template: "#login_template",
+        initialize: function () {
+            this.template = _.template($(this.template).html());
+        },
+        render: function () {
+            $(this.content).html(this.template({}));
+            return this;
+        },
+        events: {
+            "click": "render"
         }
     });
     
-    
     App.views.App = Backbone.View.extend({
         el: "body",
-        content:"#content",
-        loader:"#loader",
+        content: "#content",
+        loader: ".loader",
         productsId: "products",
         initialize: function () {
             $(this.loader).show();
             this.collection = new App.collections.Products();
+            this.signUpView = new App.views.SignUp();
+            this.login = new App.views.Login();
         },
         events: {
-            "click #all_products" : "render"
+            "click #all_products": "render",
+            "click #sign_up_button" : "signUp"
         },
         render: function () {
             let that = this;
@@ -98,9 +153,11 @@
             }
             $(this.loader).hide();
             $(this.content).append(productDiv);
+        },
+        signUp: function () {
+
         }
     });
-
 
 
 }(jQuery));

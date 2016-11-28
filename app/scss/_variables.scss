@@ -1,5 +1,6 @@
 $app_max_width: 960px;
-$test_border:1px solid #efefef;
+$border_radius:1px;
+$test_border:$border_radius solid #efefef;
 
 //loader
 $loader_width:100px;
@@ -24,5 +25,16 @@ $section_margin:20px;
 $product_width: 300px;
 $product_height: $product_width;
 $product_margin: 5px;
+$product_description_padding: 5px;
 $product_title_height:50px;
 
+//comments
+$comment_height:40px;
+$comment_margin:10px;
+$comment_padding_top:10px;
+$max_comments_width:600px;
+$rate_height:40px;
+
+
+//colors
+$alert:#c0392b;

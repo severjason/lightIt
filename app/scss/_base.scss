@@ -45,3 +45,10 @@ button:focus, button.btn.btn-default:focus {
 .bold {
   font-weight: bold;
 }
+
+button, button.btn, a {
+  min-width: $nav_buttons_width;
+  margin-top: $nav_padding;
+  height: $nav_height - 2 * $nav_padding;
+  border-radius: $border_radius;
+}

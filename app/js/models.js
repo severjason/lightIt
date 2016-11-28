@@ -7,6 +7,9 @@
                 "text": "",
                 "rate": 0
             };
+        },
+        url: function () {
+            return App.api.smk + "/reviews/" + this.productId;
         }
     });
     App.models.Product = Backbone.Model.extend({
@@ -22,7 +25,7 @@
             var productReview = new App.collections.Reviews(this.get("id"));
              return productReview.fetch().done(function () {
                 that.reviews = productReview;
-                //that.trigger("reviewsReceived");
+                that.trigger("reviewsReceived");
             });
         }
     });
