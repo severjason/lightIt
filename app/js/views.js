@@ -30,7 +30,6 @@
         renderPostReview: function () {
             $(this.postReviewContainer).children().detach();
             $(this.postReviewContainer).append(this.postReview.render().el);
-
         }
     });
     App.views.PostReview = Backbone.View.extend({
