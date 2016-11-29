@@ -2,6 +2,7 @@ $app_max_width: 960px;
 $border_radius:1px;
 $test_border:$border_radius solid #efefef;
 
+
 //loader
 $loader_width:100px;
 $loader_height:$loader_width;
@@ -12,7 +13,7 @@ $header_height:40px;
 $header_padding:10px;
 
 //nav
-$nav_height:70px;
+$nav_height:60px;
 $nav_padding:10px;
 $nav_buttons_width:80px;
 
@@ -34,7 +35,22 @@ $comment_margin:10px;
 $comment_padding_top:10px;
 $max_comments_width:600px;
 $rate_height:40px;
+$rate_width:60px;
 
 
 //colors
 $alert:#c0392b;
+
+//buttons
+$buttons_width: 100px;
+$buttons_height: 40px;
+
+//forms
+$forms_margin:10px;
+$forms_width:400px;
+$forms_alert_color:$alert;
+
+// warning
+$warning_font_size:14px;
+$warning_width:300px;
+$warning_height:$buttons_height;

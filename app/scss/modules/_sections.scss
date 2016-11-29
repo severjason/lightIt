@@ -123,6 +123,7 @@ section#content {
       #post_review_warning {
         height: $rate_height;
         line-height: $rate_height;
+        font-size: $warning_font_size;
         display: none;
         float: left;
         margin-left: $comment_margin;
@@ -130,7 +131,7 @@ section#content {
       }
 
       #post_review_rate {
-        width: 100px;
+        width: $rate_width;
         height: $rate_height;
         display: block;
         float: left;
@@ -151,21 +152,45 @@ section#content {
       text-align: center;
     }
 
+    #comments_wrapper {
+      width: 100%;
+    }
+
   }//#product_details
+
+  .app_forms {
+    margin: $forms_margin auto 0;
+    max-width: $forms_width;
+    padding: $forms_margin;
+
+    .warning {
+      position: absolute;
+      display: none;
+      width: $warning_width;
+      left: 50%;
+      margin-left: - $warning_width / 2;
+      height: $warning_height;
+      line-height: $warning_height;
+      font-size: $warning_font_size;
+      color: $alert;
+    }
+    .input_warning {
+      border-color: $alert;
+    }
+    button {
+      margin-top: $warning_height;
+    }
+  } //.app_forms
+
+
+  .loader {
+    display: none;
+    position: absolute;
+    left: 50%;
+    width: $loader_width;
+    margin-top: $loader_padding;
+    margin-left: - $loader_height/2;
+  }//#loader
+
 }// section#content
 
-#sign_up_form {
-  margin: 100px auto 0;
-  max-width: 500px;
-  padding: 5px;
-} //#sign_up_form
-
-
-.loader {
-  display: none;
-  position: absolute;
-  left: 50%;
-  width: $loader_width;
-  margin-top: $loader_padding;
-  margin-left: - $loader_height/2;
-}//#loader

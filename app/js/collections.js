@@ -4,17 +4,17 @@
     App.collections.Products = Backbone.Collection.extend({
         model: App.models.Product,
         url: function () {
-            return App.api.smk + "products";
+            return App.api + "products/";
         }
     });
 
     App.collections.Reviews = Backbone.Collection.extend({
         model: App.models.Review,
         url: function () {
-          return App.api.smk + "reviews/" + this.productId;
+          return App.api + "reviews/" + this.product;
         },
         initialize: function (productId) {
-            this.productId = productId;
+            this.product = productId;
         }
     })
 }());
