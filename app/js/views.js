@@ -58,8 +58,8 @@
                 var that = this;
                 var newReview = new App.models.Review({
                     product: this.model.get("id"),
-                    rate: +$(this.rateId).val(),
-                    text: $(this.textId).val()
+                    rate: +_.escape($(this.rateId).val()),
+                    text: _.escape($(this.textId).val())
                 });
                 newReview.save({}, {
                     success: function () {
@@ -150,8 +150,8 @@
             }
             else {
                 var newUser = new App.models.User({
-                    "username": $(this.userNameId).val(),
-                    "password": $(this.passwordId).val()
+                    "username": _.escape($(this.userNameId).val()),
+                    "password": _.escape($(this.passwordId).val())
                 });
                 let that = this;
                 newUser.save({}, {
@@ -162,7 +162,7 @@
                             that.showWarning(response.message);
                         }
                         App.session.login(response);
-                        window.location.href = "/";
+                        //window.location.href = "/";
                     },
                     error: function (model, response) {
                         console.log(response);
@@ -227,8 +227,8 @@
             }
             else {
                 var user = new App.models.User({
-                    "username": $(this.userNameId).val(),
-                    "password": $(this.passwordId).val()
+                    "username": _.escape($(this.userNameId).val()),
+                    "password": _.escape($(this.passwordId).val())
                 });
                 let that = this;
                 user.save({}, {
