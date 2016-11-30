@@ -49,7 +49,10 @@
         },
         submit: function () {
             if (this.textIsEmpty()) {
-                this.showWarning();
+                this.showWarning("Comment is empty!");
+            }
+            else if (!App.session.isLogged()) {
+                this.showWarning("You should sign first!");
             }
             else {
                 var that = this;
@@ -72,9 +75,9 @@
         textIsEmpty: function () {
             return $(this.textId).val() === "";
         },
-        showWarning: function () {
-            $(this.warningId).show().delay(1000).queue(function () {
-                $(this).stop(true, true).hide();
+        showWarning: function (text) {
+            $(this.warningId).show().html(text).delay(2000).queue(function () {
+                $(this).stop(true, true).html("").hide();
             });
         }
     });
@@ -183,11 +186,11 @@
             return $(this.passwordId).val() === $(this.confirmPasswordId).val();
         },
         showWarning: function (text, inputId) {
-            $(this.warningId).show().html(text).delay(1000).queue(function () {
+            $(this.warningId).show().html(text).delay(2000).queue(function () {
                 $(this).stop(true, true).html("").hide();
             });
             if (inputId) {
-                $(inputId).addClass("input_warning").delay(1000).queue(function () {
+                $(inputId).addClass("input_warning").delay(2000).queue(function () {
                     $(this).stop(true, true).removeClass("input_warning");
                 });
             }
@@ -256,11 +259,11 @@
             return this.isEmpty($(this.passwordId).val());
         },
         showWarning: function (text, inputId) {
-            $(this.warningId).show().html(text).delay(1000).queue(function () {
+            $(this.warningId).show().html(text).delay(2000).queue(function () {
                 $(this).stop(true, true).html("").hide();
             });
             if (inputId) {
-                $(inputId).addClass("input_warning").delay(1000).queue(function () {
+                $(inputId).addClass("input_warning").delay(2000).queue(function () {
                     $(this).stop(true, true).removeClass("input_warning");
                 });
             }

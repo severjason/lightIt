@@ -17,9 +17,10 @@ const path = {
     images: 'app/images/**/*.*+(png|jpeg|jpg|svg|gif)',
     fonts: ['bower_components/bootstrap-sass/assets/fonts/**/*'],
     libJs: [
-        /*'bower_components/fabric.js/dist/fabric.min.js',
-         'bower_components/jquery/dist/jquery.min.js',
-         'bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js'*/
+        'bower_components/jquery/dist/jquery.min.js',
+        "bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js",
+        "bower_components/underscore/underscore-min.js",
+        "bower_components/backbone/backbone-min.js"
     ],
     js: ['app/js/**/*.js']
 };
@@ -79,7 +80,9 @@ gulp.task('useref', function () {
         .pipe($.if('*.js', $.babel({
             presets: ['es2015']
         })))
-        .pipe($.if('*.js', $.uglify()))
+        .pipe($.if('*.js', $.uglify({
+            compress: false
+        })))
         .pipe($.if('*.css', $.cssnano()))
         .pipe(gulp.dest('dist'));
 });
@@ -126,14 +129,14 @@ gulp.task('clean:dist', function (callback) {
  */
 gulp.task('watch', ['browserSync', 'css'], function () {
     gulp.watch(path.scss, ['css']);
-    gulp.watch(["app/*.html","app/scss/*.scss"]).on('change', browserSync.reload);
+    gulp.watch(["app/*.html", "app/scss/*.scss"]).on('change', browserSync.reload);
 });
 
 /**
  *  Task to builds an app for production
  */
 gulp.task('build', function () {
-    runSequence(['css', 'useref','js', 'img', 'fonts'])
+    runSequence(['css', 'useref', 'js', 'img', 'fonts'])
 });
 
 /**
