@@ -52,7 +52,7 @@
                 this.showWarning("Comment is empty!");
             }
             else if (!App.session.isLogged()) {
-                this.showWarning("You should sign first!");
+                this.showWarning("You should login first!");
             }
             else {
                 var that = this;
