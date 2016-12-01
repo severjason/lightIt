@@ -328,7 +328,7 @@
             App.session.logout();
             $(this.logoutButton).hide();
             $(this.loginButton).show();
-
+            window.location.href = "/";
         }
     });
 
