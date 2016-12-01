@@ -161,8 +161,11 @@
                         if (!response.success) {
                             that.showWarning(response.message);
                         }
-                        App.session.login(response);
-                        window.location.href = "/";
+                        else {
+                            App.session.login(response);
+                            window.location.href = "/";
+                        }
+
                     },
                     error: function (model, response) {
                         console.log(response);
