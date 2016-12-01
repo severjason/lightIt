@@ -162,7 +162,7 @@
                             that.showWarning(response.message);
                         }
                         App.session.login(response);
-                        //window.location.href = "/";
+                        window.location.href = "/";
                     },
                     error: function (model, response) {
                         console.log(response);
